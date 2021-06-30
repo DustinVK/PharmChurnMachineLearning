@@ -62,9 +62,7 @@ with open(REAL_DATA,newline='') as csvfile:
             id = float(row[2])
             if(float(row[2]) in data_map):
                 data_row = data_map[id]
-                print("existing record... tx count: ", data_row["transaction_count"])
                 data_row["transaction_count"] = data_row["transaction_count"]+1
-                print("new tx count: ", data_row["transaction_count"])
             else:
                 data_row = new_row(id)
         
@@ -115,7 +113,7 @@ fields = {"customer_ref_id",
         "quantity_acute",
         "quantity_h1"}
 
-with open('processed_data2.csv', 'w') as csvfile: 
+with open('processed_data.csv', 'w') as csvfile: 
     # creating a csv dict writer object 
     writer = csv.DictWriter(csvfile, fieldnames = fields) 
     writer.writeheader() 

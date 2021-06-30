@@ -18,7 +18,7 @@ from sklearn.datasets import load_iris
 
 from joblib import dump, load
 
-data = pd.read_csv('processed_data2.csv')
+data = pd.read_csv('processed_data.csv')
 target = pd.read_csv('out_of_time_test_oct.csv')
 iris = load_iris()
 
@@ -30,9 +30,10 @@ target = target.sort_values(by=['customer_ref_id'])
 data=data.drop(["customer_ref_id"],axis=1)
 target=target.drop(["customer_ref_id"], axis=1)
 
-scaler = preprocessing.MinMaxScaler()
-names = data.columns
-d = scaler.fit_transform(data)
+# feature sclaing
+#scaler = preprocessing.MinMaxScaler()
+#names = data.columns
+#d = scaler.fit_transform(data)
 #data = pd.DataFrame(d, columns=names)
 #print(scaled_df.head())
 #dtc = tree.DecisionTreeClassifier()
@@ -40,7 +41,7 @@ d = scaler.fit_transform(data)
 
 #rfc = ensemble.RandomForestClassifier()
 #rfc = rfc.fit(data, ravel(target))
-
+print(data.head())
 lr = linear_model.LogisticRegression(max_iter=1000)
 lr = lr.fit(data,ravel(target))
 
@@ -56,8 +57,8 @@ print("Accuracy: \n", metrics.accuracy_score(target, prediction))
 print("Recall: \n", metrics.recall_score(target,prediction))
 print("Precision: \n", metrics.precision_score(target,prediction))
 print("F1 Score: ", metrics.f1_score(target,prediction))
-result = cross_validate(lr,data,ravel(target))
-print(result['test_score'])
+#result = cross_validate(lr,data,ravel(target))
+#print(result['test_score'])
 
 dump(lr, 'lr-model.joblib') 
 
