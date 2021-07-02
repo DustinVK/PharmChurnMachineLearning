@@ -97,7 +97,7 @@ def randomize(event):
     vals[17] = random.uniform(0,48)
     vals[18] = random.uniform(0,1000)
     vals[19] = random.uniform(1,24118)
-    vals[20] = random.randrange(1,10)
+    vals[20] = random.randrange(1,150)
     vals[21] = random.uniform(0,56)
 
     for i in range(len(entries)):
