@@ -2,7 +2,7 @@
 ### A machine learning application built with python 3. 
 
 ## About
-The goal of this app is to predict whether a given customer will make a purchase. It uses a machine learning model created and trained using the Scikit-learn library.
+The goal of this app is to predict whether a given customer will make a purchase in the next month. It uses a machine learning model created and trained using the Scikit-learn library.
 
 ## Data
 The dataset was sourced from Kaggle. It spans 6 months and 1,184,025 records with 21 columns of customer transactional data. 
