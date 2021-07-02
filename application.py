@@ -9,30 +9,36 @@ labels = []
 entries = []
 
 
-for attribute in attributes:
-    label = tk.Label(text=attribute)
-    entry = tk.Entry()
-    labels.append(label)
-    entries.append(entry)
+#for attribute in attributes:
+    #label = tk.Label(text=attribute)
+    #entry = tk.Entry()
+    #labels.append(label)
+    #entries.append(entry)
 
+
+attribute_index = 0
 for i in range(5):
-    for j in range(7):
+    for j in range(5):
         frame = tk.Frame(
             master=window,
             relief=tk.RAISED,
             borderwidth=1
         )
         frame.grid(row=i, column=j)
-        if ((i+j) < len(attributes)):
-            label = tk.Label(master=frame, text=attributes[i+j])
+        if (attribute_index < len(attributes)):
+            label = tk.Label(master=frame, text=attributes[attribute_index])
+            attribute_index += 1
             entry = tk.Entry(master=frame)
+            entries.append(entry)
             entry.insert(0,0)
             label.pack()
             entry.pack()
-        if (i==4 and j==6):
+   
+
+        if (i==4 and j==4):
             button = tk.Button(
                 master=frame,
-                text="Click me!",
+                text="Make Prediction",
                 width=25,
                 height=5,
                 bg="blue",
@@ -41,7 +47,8 @@ for i in range(5):
             button.pack()
         
 
-
+prediction_label = tk.Label(master=frame)
+prediction_label.pack()
 
 
 
@@ -51,16 +58,29 @@ def handle_keypress(event):
     """Print the character associated to the key pressed"""
     name = entry.get()
     print(name)
-    print(event.char)
 
 def handle_button(event):
-    name = entry.get()
-    print(name)
+    row = []
+    for thing in entries:
+        row.append(float(thing.get()))
+        
+    
+    prediction = lr.predict([[row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19],row[20],row[21]]])
+    prediction_text = ""
+    if (prediction == 0):
+        prediction_text = "Customer will not make a purchase within the next month."
+    else:
+        prediction_text = "Customer will make a purcahse within the next month."
+    prediction_label.config(text=prediction_text)
+    print(lr.predict([[row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19],row[20],row[21]]]))
+
+   
 
 button.bind("<Button-1>", handle_button)
 # Bind keypress event to handle_keypress()
 window.bind("<Key>", handle_keypress)
 
 window.mainloop()
-#print(lr.predict([[0.0,0.0,2.0,0.0,0.0,1.0,2.0,2.0,0.0,0.0,0.0,17.2,0.0,0.0,0.0,0.0,0.0,15.48,1,0.0,1.0,0.0]]))
+row=[]
+#print(lr.predict([[row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19],row[20],row[21]]]))
 
