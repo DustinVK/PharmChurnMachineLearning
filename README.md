@@ -18,7 +18,7 @@ python -m tkinter
 If a window pops up showing which version of Tkinter is installed, then you are all set. If not, then you will need to [install it.](https://realpython.com/python-gui-tkinter/#building-your-first-python-gui-application-with-tkinter
 )
 
-Then, either clone the repo or just download both application.py and lr-model.joblib to the same directory. Now you can run the app by entering the following from the directory it is in:
+Then, either clone the repo or just download both application.py and DTC-model.joblib to the same directory. Now you can run the app by entering the following from the directory it is in:
 ```
 python3 application.py
 ```
