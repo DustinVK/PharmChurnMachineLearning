@@ -25,45 +25,66 @@ iris = load_iris()
 
 ##  Preprocessing 
 target = target.sort_values(by=['customer_ref_id'])
-#print(target.tail())
-#print(data.tail())
 data=data.drop(["customer_ref_id"],axis=1)
 target=target.drop(["customer_ref_id"], axis=1)
 
-# feature sclaing
+# Feature Scaling
 #scaler = preprocessing.MinMaxScaler()
 #names = data.columns
-#d = scaler.fit_transform(data)
-#data = pd.DataFrame(d, columns=names)
+#scaled_data = scaler.fit_transform(data)
+#scaled_data = pd.DataFrame(scaled_data, columns=names)
 #print(scaled_df.head())
-#dtc = tree.DecisionTreeClassifier()
-#dtc = dtc.fit(data, target)
 
-#rfc = ensemble.RandomForestClassifier()
-#rfc = rfc.fit(data, ravel(target))
-print(data.head())
-lr = linear_model.LogisticRegression(max_iter=1000)
-lr = lr.fit(data,ravel(target))
 
-#result = cross_validate(dtc,data,target)
+model = tree.DecisionTreeClassifier()
+model = model.fit(data,ravel(target))
+
+prediction = model.predict(data)
+
+def measure_error(pred):
+    print("Confusion Matrix: \n", metrics.confusion_matrix(target,pred))
+    print("Accuracy: \n", metrics.accuracy_score(target, pred))
+    print("Recall: \n", metrics.recall_score(target,pred))
+    print("Precision: \n", metrics.precision_score(target,pred))
+    print("F1 Score: ", metrics.f1_score(target,pred))
+
+print("Decision Tree Results:")
+measure_error(prediction)
+# Cross Validation
+#result = cross_validate(model,data,ravel(target))
 #print(result['test_score'])
 
-#result = cross_validate(rfc,data,ravel(target))
-#print(result['test_score'])
-prediction = lr.predict(data)
+# export model 
+dump(model, 'DTC-model.joblib') 
 
-print("Confusion Matrix: \n", metrics.confusion_matrix(target,prediction))
-print("Accuracy: \n", metrics.accuracy_score(target, prediction))
-print("Recall: \n", metrics.recall_score(target,prediction))
-print("Precision: \n", metrics.precision_score(target,prediction))
-print("F1 Score: ", metrics.f1_score(target,prediction))
-#result = cross_validate(lr,data,ravel(target))
-#print(result['test_score'])
+# test model
+print(model.predict([[0.0,0.0,21.0,0.0,0.0,7.0,0.0,3.0,0.0,0.0,18.0,5262.66,6.0,0.0,0.0,15.0,1.0,4228.9485,1,0.0,0.0,0.0]]))
 
-dump(lr, 'lr-model.joblib') 
+model = linear_model.LogisticRegression(max_iter=900)
+model = model.fit(data,ravel(target))
 
-#print(clf.predict([[0.0,0.0,21.0,0.0,0.0,7.0,0.0,3.0,0.0,0.0,18.0,5262.66,6.0,0.0,0.0,15.0,1.0,4228.9485,1,0.0,0.0,0.0
-#]]))
+prediction = model.predict(data)
+print("Logistic Regression Results:")
+measure_error(prediction)
 
+# export model 
+dump(model, 'LR-model.joblib') 
+
+# test model
+print(model.predict([[0.0,0.0,21.0,0.0,0.0,7.0,0.0,3.0,0.0,0.0,18.0,5262.66,6.0,0.0,0.0,15.0,1.0,4228.9485,1,0.0,0.0,0.0]]))
+
+
+model = ensemble.RandomForestClassifier()
+model = model.fit(data,ravel(target))
+
+prediction = model.predict(data)
+print("Random Forest Classifier Results:")
+measure_error(prediction)
+
+# export model 
+dump(model, 'RF-model.joblib') 
+
+# test model
+print(model.predict([[0.0,0.0,21.0,0.0,0.0,7.0,0.0,3.0,0.0,0.0,18.0,5262.66,6.0,0.0,0.0,15.0,1.0,4228.9485,1,0.0,0.0,0.0]]))
 
 

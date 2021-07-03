@@ -3,7 +3,7 @@ from tkinter import *
 from joblib import load
 import random
 
-lr = load('lr-model.joblib')
+lr = load('DTC-model.joblib')
 
 attributes = ["quantity_ethical","cash","quantity_acute","cheque","upi","quantity_ayurvedic","returned_quantity_bill","paytm","quantity_general","quantity_chronic","quantity_otc","total_spend_bill","return_value_bill","quantity_surgical","total_quantity_bill","phonepe","card","num_drugs_bill","quantity_generic","mrp_bill","transaction_count","quantity_h1"]
 window = tk.Tk()
@@ -116,5 +116,7 @@ window.bind("<Key>", handle_keypress)
 
 window.mainloop()
 row=[]
-#print(lr.predict([[row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19],row[20],row[21]]]))
 
+
+print(lr.predict([[0.5,1.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5,0.0,225.41000000000003,0.0,0.0,3.5,0.0,0.0,3.0,3.0,440.4,2,0.0
+]]))
