@@ -59,7 +59,7 @@ for i in range(6):
 def handle_keypress(event):
     """Print the character associated to the key pressed"""
     name = entry.get()
-    print(name)
+    #print(name)
 
 def make_prediction(event):
     row = []
@@ -72,7 +72,7 @@ def make_prediction(event):
     else:
         prediction_text = "Customer will make a purcahse within the next month."
     prediction_label.config(text=prediction_text)
-    print(lr.predict([[row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19],row[20],row[21]]]))
+    #print(lr.predict([[row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13],row[14],row[15],row[16],row[17],row[18],row[19],row[20],row[21]]]))
 
 
 def randomize(event):
@@ -101,22 +101,15 @@ def randomize(event):
     vals[21] = random.uniform(0,56)
 
     for i in range(len(entries)):
-        print(vals[i])
+        #print(vals[i])
         entries[i].delete(0,tk.END)
         entries[i].insert(0, vals[i])
         
-    
-  
-   
-
 prediction_button.bind("<Button-1>", make_prediction)
 random_button.bind("<Button-1>", randomize)
 # Bind keypress event to handle_keypress()
 window.bind("<Key>", handle_keypress)
 
 window.mainloop()
-row=[]
 
 
-print(lr.predict([[0.5,1.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.5,0.0,225.41000000000003,0.0,0.0,3.5,0.0,0.0,3.0,3.0,440.4,2,0.0
-]]))

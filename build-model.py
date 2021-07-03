@@ -20,8 +20,6 @@ from joblib import dump, load
 
 data = pd.read_csv('processed_data.csv')
 target = pd.read_csv('out_of_time_test_oct.csv')
-iris = load_iris()
-
 
 ##  Preprocessing 
 target = target.sort_values(by=['customer_ref_id'])
@@ -58,7 +56,7 @@ measure_error(prediction)
 dump(model, 'DTC-model.joblib') 
 
 # test model
-print(model.predict([[0.0,0.0,21.0,0.0,0.0,7.0,0.0,3.0,0.0,0.0,18.0,5262.66,6.0,0.0,0.0,15.0,1.0,4228.9485,1,0.0,0.0,0.0]]))
+#print(model.predict([[0.0,0.0,21.0,0.0,0.0,7.0,0.0,3.0,0.0,0.0,18.0,5262.66,6.0,0.0,0.0,15.0,1.0,4228.9485,1,0.0,0.0,0.0]]))
 
 model = linear_model.LogisticRegression(max_iter=900)
 model = model.fit(data,ravel(target))
@@ -71,7 +69,7 @@ measure_error(prediction)
 dump(model, 'LR-model.joblib') 
 
 # test model
-print(model.predict([[0.0,0.0,21.0,0.0,0.0,7.0,0.0,3.0,0.0,0.0,18.0,5262.66,6.0,0.0,0.0,15.0,1.0,4228.9485,1,0.0,0.0,0.0]]))
+#print(model.predict([[0.0,0.0,21.0,0.0,0.0,7.0,0.0,3.0,0.0,0.0,18.0,5262.66,6.0,0.0,0.0,15.0,1.0,4228.9485,1,0.0,0.0,0.0]]))
 
 
 model = ensemble.RandomForestClassifier()
@@ -82,7 +80,7 @@ print("Random Forest Classifier Results:")
 measure_error(prediction)
 
 # export model 
-dump(model, 'RF-model.joblib') 
+dump(model, 'RFr-model.joblib') 
 
 # test model
 print(model.predict([[0.0,0.0,21.0,0.0,0.0,7.0,0.0,3.0,0.0,0.0,18.0,5262.66,6.0,0.0,0.0,15.0,1.0,4228.9485,1,0.0,0.0,0.0]]))
