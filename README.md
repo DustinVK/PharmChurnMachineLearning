@@ -7,7 +7,7 @@ The goal of this app is to predict whether a given customer will make a purchase
 ## Data
 The dataset was sourced from Kaggle. It spans 6 months and 1,184,025 records with 21 columns of customer transactional data. 
 
-The training dataset (purchase_data_bill_level_sept.csv) is too big to be hosted on GitHub, but it can be found here:
+The training dataset (purchase_data_bill_level_sept.csv) is too large to be hosted on GitHub, but it can be found here:
 https://www.kaggle.com/mishra5001/customer-churn-prediction-pharmaceutical-data
 
 ## Running the App
